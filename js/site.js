@@ -20,6 +20,7 @@ function getValues(){
     }
     else
     {
+        // display a SweetAlert if validation fails
         Swal.fire(
             {
                 icon: 'error',
@@ -38,9 +39,11 @@ function generateListOfNumbers(start, end){
     // create variable for the list of numbers
     numbers = [];
 
+    // create a for loop to add number to the list
     for (let n = start; n <= end; n++){
         numbers.push(n)
     }
+    // return the list of numbers
     return numbers;
 }
 
@@ -52,12 +55,13 @@ function displayListOfNumbers(numbers){
 
     // create a loop that will get each number from the array
     for(let i = 0; i < numbers.length; i++){
-        // create a variable for the current number
+        // create a variable for the current number, class name, and buzz word
         let currentNumber = numbers[i];
         let buzzWord = '';
         let className = '';
 
         // create a condition that looks for divisible requirements
+        // and creates the proper HTML code for the table row
         if(currentNumber % 3 == 0 && currentNumber % 5 == 0)
         {
             className = 'fizzbuzz';
@@ -82,6 +86,8 @@ function displayListOfNumbers(numbers){
         }
        
     }
+    // once the row is created, place that row on to the page with the correct
+    // data and classes for styling
     let tbody = document.getElementById('results');
     tbody.innerHTML = html;
 }
