@@ -61,6 +61,7 @@
     
     <main class="container py-3">
         <h1 class="border-bottom border-2 border-dark">The Code</h1>
+        <!-- Main Code -->
         <div class="row">
             <div class="col-12 col-lg-8">
                 <!-- Display Code Here -->
@@ -100,23 +101,78 @@ function getValues(){
 
     
 }
+                    </code>
+                </pre>
+            </div>
+            <div class="col-12 col-lg-4">
+                <!-- Explain your code here -->
+                <p>The code for this FizzBuzz Challenge is structured into three functions</p>
+                <p><code>getValues</code> main focus is on getting the values from the inputs. The secondary focus for the function is to orchestrate the order in which the application is supposed to run.</p>
+                <p>There is a third focus for this class as well which is to validate tthe users input, but I will go into the details of the validations later.</p>
+                <p>In this function, first we get the values the user inputs in the fields. The values are then converted from text to an integer via the <code>parseInt(startValue)</code> and <code>parseInt(endValue)</code> methods. After validation is complete, these values are tehn sent to the <code>generateListOfNumbers</code> function.</p>
+            </div>
+        </div>
 
-// generate the list of numbers
-function generateListOfNumbers(start, end){
-
-    // create variable for the list of numbers
-    numbers = [];
-
-    // create a for loop to add number to the list
-    for (let n = start; n <= end; n++){
-        numbers.push(n)
-    }
-    // return the list of numbers
-    return numbers;
-}
-
-
-// display the list of numbers
+        <!-- #region Colapse Code for generateNumbers -->
+        <div class="row">
+            <div>
+                <button class="btn btn-primary mb-3 w-100" type="button" data-bs-toggle="collapse" data-bs-target="#generateNumbers" aria-expanded="false" aria-controls="generateNumbers">
+                  generateListOfNumbers
+                </button>
+            </div>
+            <div class="collapse" id="generateNumbers">
+                
+                  <!-- add code content -->
+                  <div class="row">
+                    <div class="col-12 col-lg-8">
+                        <!-- Display Code Here -->
+                        <pre class="line-numbers"> <!-- This tag allows for any formatted text (indents, tabs, spaces) to be preserved -->
+                            <code class="language-js"> <!-- allows code to be added to a block and formatted for code -->
+        // from site.js
+        
+        // generate the list of numbers
+        function generateListOfNumbers(start, end){
+        
+            // create variable for the list of numbers
+            numbers = [];
+        
+            // create a for loop to add number to the list
+            for (let n = start; n <= end; n++){
+                numbers.push(n)
+            }
+            // return the list of numbers
+            return numbers;
+        }
+                            </code>
+                        </pre>
+                    </div>
+                    <div class="col-12 col-lg-4">
+                        <!-- Explain your code here -->
+                        <p>In this function, the values are received and are ran through a for loop. This gets every number between the starting value and the ending value. Each time the loop runs it pushes each number into the array until the condition is met. This array of numbers is returned and is then sent to the <code>displayListOfNumbers</code> function.</p>
+                    </div>
+                </div>
+            </div>    
+        </div>
+        <!-- #endregion end colapse generateNumbers -->
+              
+        <!-- #region colapse component for displayListOfNumbers -->
+        <div class="row">
+            <div>
+                <button class="btn btn-primary mb-3 w-100 " type="button" data-bs-toggle="collapse" data-bs-target="#displayNumbers" aria-expanded="false" aria-controls="displayNumbers">
+                  displayListOfNumbers
+                </button>
+            </div>
+            <div class="collapse" id="displayNumbers">
+                
+                  <!-- add code content -->
+                  <div class="row">
+                    <div class="col-12 col-lg-8">
+                        <!-- Display Code Here -->
+                        <pre class="line-numbers"> <!-- This tag allows for any formatted text (indents, tabs, spaces) to be preserved -->
+                            <code class="language-js"> <!-- allows code to be added to a block and formatted for code -->
+        // from site.js
+        
+        // display the list of numbers
 function displayListOfNumbers(numbers){
     // create a variable that will hold the HTML string
     let html = '';
@@ -134,40 +190,91 @@ function displayListOfNumbers(numbers){
         {
             className = 'fizzbuzz';
             buzzWord = 'FIZZBUZZ';
-            html += `<tr><td class="${className}">${buzzWord}</tr></td>`
+            html += `${buzzWord}`
         }
         else if(currentNumber % 3 == 0)
         {
             className = 'fizz';
             buzzWord = 'FIZZ';
-            html += `<tr><td class="${className}">${buzzWord}</tr></td>`
+            html += `${buzzWord}`
         }
         else if(currentNumber % 5 == 0)
         {
             className = 'buzz';
             buzzWord = 'BUZZ';
-            html += `<tr><td class="${className}">${buzzWord}</tr></td>`
+            html += `${buzzWord}`
         }
         else
         {
-            html += `<tr><td>${currentNumber}</tr></td>`;
+            html += `${currentNumber}`;
         }
-        
+
     }
     // once the row is created, place that row on to the page with the correct
     // data and classes for styling
     let tbody = document.getElementById('results');
     tbody.innerHTML = html;
 }
-                    </code>
-                </pre>
-            </div>
-            <div class="col-12 col-lg-4">
-                <!-- Explain your code here -->
-                <p>The code is structured in one function</p>
-                <p><code>displayMessage</code> displays a SweetAlert when the button is pressed.</p>
-            </div>
+                            </code>
+                        </pre>
+                    </div>
+                    <div class="col-12 col-lg-4">
+                        <!-- Explain your code here -->
+                        <p>In this final function of the code, a few new variables are created: one to hold the current number of the for loop, one to hold a buzz word, and one to hold a class name. The last class pertains to setting CSS for customization of the results. The other two pertain to the results of the application. A final variable is created to hold an HTML string that will be inserted into the DOM after each iteration of the loop</p>
+                        <p>Another for loop is run through with the array of number that was created in the previous function. Within this loop each number is checked for three things: if the number is divisible by 3, if the number is divisible by 5, or if the number is divisible by both 3 & 5. depending on which condition is met, a class name and buzz word is applied to a pre-created interpolated string and is sent to the DOM where it is inserted into the table.</p>
+                    </div>
+                </div>
+            </div>    
         </div>
+        <!-- #endregion colapse component for displayNumbers -->
+          
+        <!-- #region colapse component for validations -->
+        <div class="row">
+            <div>
+                <button class="btn btn-primary mb-3 w-100 " type="button" data-bs-toggle="collapse" data-bs-target="#validations" aria-expanded="false" aria-controls="validations">
+                  Validations
+                </button>
+            </div>
+            <div class="collapse" id="validations">
+                
+                  <!-- add code content -->
+                  <div class="row">
+                    <div class="col-12 col-lg-8">
+                        <!-- Display Code Here -->
+                        <pre class="line-numbers"> <!-- This tag allows for any formatted text (indents, tabs, spaces) to be preserved -->
+                            <code class="language-js"> <!-- allows code to be added to a block and formatted for code -->
+        // from site.js
+        
+        // Validate the user input
+    if (Number.isInteger(startValue) && Number.isInteger(endValue) && startValue < endValue){
+        // send values to generate list of numbers
+        let generatedValues =  generateListOfNumbers(startValue, endValue);
+        // display the list of numbers
+        displayListOfNumbers(generatedValues);
+    }
+    else
+    {
+        // display a SweetAlert if validation fails
+        Swal.fire(
+            {
+                icon: 'error',
+                backdrop: false,
+                title: 'Oops',
+                text: 'Please enter valid numbers only. Ensure Starting value is less than the Ending Value.'
+            });
+    }
+                            </code>
+                        </pre>
+                    </div>
+                    <div class="col-12 col-lg-4">
+                        <!-- Explain your code here -->
+                        <p>The validations that are done in the <code>getValues</code> function are there to ensure the application runs as it should. It checks to make sure that the input is a number and that the starting value is less than the ending value.<p>
+                        <p>If the validation should fail, a SweetAlert popup window will appear with information to the user on what the erroe is and how to correct it.</p>
+                    </div>
+                </div>
+            </div>    
+        </div>
+        <!-- #endregion colapse component for validations -->
     </main>
 
     <!-- Footer -->
@@ -198,6 +305,11 @@ function displayListOfNumbers(numbers){
             </div>
         </div>
     </footer>
+
+    <!-- colapse functions -->
+    
+  
+
 
     <!-- Script tags -->
     <!-- Bootstrap JS -->
