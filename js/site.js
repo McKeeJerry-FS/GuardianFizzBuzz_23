@@ -13,7 +13,8 @@ function getValues(){
 
     // Validate the user input
     if (Number.isInteger(startValue) && Number.isInteger(endValue) && startValue < endValue){
-
+        // send values to generate list of numbers
+        generateListOfNumbers(startValue, endValue);
     }
     else
     {
@@ -26,12 +27,19 @@ function getValues(){
             });
     }
 
-    // test the connection to the form
+    
 }
 
 // generate the list of numbers
-function generateListOfNumbers(){
+function generateListOfNumbers(start, end){
 
+    // create variable for the list of numbers
+    numbers = [];
+
+    for (let n = start; n <= end; n++){
+        numbers.push(n)
+    }
+    return numbers;
 }
 
 
