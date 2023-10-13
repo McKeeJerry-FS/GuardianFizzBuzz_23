@@ -54,24 +54,33 @@ function displayListOfNumbers(numbers){
     for(let i = 0; i < numbers.length; i++){
         // create a variable for the current number
         let currentNumber = numbers[i];
+        let buzzWord = '';
+        let className = '';
 
         // create a condition that looks for divisible requirements
         if(currentNumber % 3 == 0 && currentNumber % 5 == 0)
         {
-            html += `<tr><td>FIZZBUZZ</tr></td>`
+            className = 'fizzbuzz';
+            buzzWord = 'FIZZBUZZ';
+            html += `<tr><td class="${className}">${buzzWord}</tr></td>`
         }
         else if(currentNumber % 3 == 0)
         {
-            html += `<tr><td>FIZZ</tr></td>`
+            className = 'fizz';
+            buzzWord = 'FIZZ';
+            html += `<tr><td class="${className}">${buzzWord}</tr></td>`
         }
         else if(currentNumber % 5 == 0)
         {
-            html += `<tr><td>BUZZ</tr></td>`
+            className = 'buzz';
+            buzzWord = 'BUZZ';
+            html += `<tr><td class="${className}">${buzzWord}</tr></td>`
         }
         else
         {
-            html += `<tr><td>${currentNumber}</tr></td>`
+            html += `<tr><td>${currentNumber}</tr></td>`;
         }
+       
     }
     let tbody = document.getElementById('results');
     tbody.innerHTML = html;

@@ -58,3 +58,21 @@ footer .bi:hover{
     max-width: 400px;
     border-radius: 15px;
 }
+
+.fizz {
+    background-color: var(--jm-theme-200) !important;
+    font-weight: 600;
+    text-align: center;
+}
+
+.buzz {
+    background-color: var(--jm-theme-400) !important;
+    font-weight: 600;
+    text-align: center;
+}
+
+.fizzbuzz {
+    background-color: var(--jm-theme-600) !important;
+    font-weight: bolder;
+    text-align: center;
+}
