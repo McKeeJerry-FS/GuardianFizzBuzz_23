@@ -121,7 +121,7 @@ function getValues(){
                   generateFizzBuzz
                 </button>
             </div>
-            <div class="collapse" id="generateFizzBuzz">
+            <div class="collapse show" id="generateFizzBuzz">
                 
                   <!-- add code content -->
                   <div class="row">
@@ -173,7 +173,7 @@ function generateFizzBuzz(fizz, buzz){
                   displayFizzBuzz
                 </button>
             </div>
-            <div class="collapse" id="displayNumbers">
+            <div class="collapse show" id="displayNumbers">
                 
                   <!-- add code content -->
                   <div class="row">
@@ -191,11 +191,11 @@ function displayFizzBuzz(numbers){
         
         
         let arrayItem = numbers[index];
-        let newDiv = document.createElement('div'); // <div></div>
-        newDiv.classList.add('col'); // <div class="col"></div>
-        newDiv.classList.add(arrayItem) // <div class="col Fizz"></div>
+        let newDiv = document.createElement('div'); 
+        newDiv.classList.add('col'); 
+        newDiv.classList.add(arrayItem) 
 
-        newDiv.textContent = arrayItem; // <div class="col Fizz">Fizz</div>
+        newDiv.textContent = arrayItem; 
         
         resultsDiv.appendChild(newDiv);
     }
@@ -219,7 +219,7 @@ function displayFizzBuzz(numbers){
                   Validations
                 </button>
             </div>
-            <div class="collapse" id="validations">
+            <div class="collapse show" id="validations">
                 
                   <!-- add code content -->
                   <div class="row">
