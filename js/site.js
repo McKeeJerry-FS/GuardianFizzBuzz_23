@@ -14,9 +14,9 @@ function getValues(){
     // Validate the user input
     if (Number.isInteger(startValue) && Number.isInteger(endValue) && startValue < endValue){
         // send values to generate list of numbers
-        let generatedValues =  generateListOfNumbers(startValue, endValue);
+        let fbArray =  generateFizzBuzz(startValue, endValue);
         // display the list of numbers
-        displayListOfNumbers(generatedValues);
+        displayFizzBuzz(fbArray);
     }
     else
     {
@@ -34,14 +34,26 @@ function getValues(){
 }
 
 // generate the list of numbers
-function generateListOfNumbers(start, end){
+function generateFizzBuzz(start, end){
 
     // create variable for the list of numbers
     numbers = [];
 
     // create a for loop to add number to the list
     for (let n = start; n <= end; n++){
-        numbers.push(n)
+        // create a variable for the current number, class name, and buzz word
+        if(n % 3 == 0 && n % 5 == 0){
+            numbers.push('FizzBuzz')
+        }
+        if(n % 3 == 0){
+            numbers.push('Fizz');
+        }
+        else if (n % 5 == 0){
+            numbers.push('Buzz');
+        }
+        else {
+            numbers.push(n);        
+        }
     }
     // return the list of numbers
     return numbers;
@@ -49,45 +61,32 @@ function generateListOfNumbers(start, end){
 
 
 // display the list of numbers
-function displayListOfNumbers(numbers){
-    // create a variable that will hold the HTML string
+function displayFizzBuzz(numbers){
+    // create a variable for the HTML + numbers
     let html = '';
 
-    // create a loop that will get each number from the array
-    for(let i = 0; i < numbers.length; i++){
-        // create a variable for the current number, class name, and buzz word
-        let currentNumber = numbers[i];
-        let buzzWord = '';
+    // make a loop to get each number from the array
+    for (let index = 0; index < numbers.length; index += 1){
+        
         let className = '';
+        let currentValue = numbers[index];
 
-        // create a condition that looks for divisible requirements
-        // and creates the proper HTML code for the table row
-        if(currentNumber % 3 == 0 && currentNumber % 5 == 0)
-        {
-            className = 'fizzbuzz';
-            buzzWord = 'FIZZBUZZ';
-            html += `<tr><td class="${className}">${buzzWord}</tr></td>`
-        }
-        else if(currentNumber % 3 == 0)
-        {
+        if (currentValue == 'Fizz' ){
             className = 'fizz';
-            buzzWord = 'FIZZ';
-            html += `<tr><td class="${className}">${buzzWord}</tr></td>`
-        }
-        else if(currentNumber % 5 == 0)
-        {
+        } else if (currentValue == 'Buzz'){
             className = 'buzz';
-            buzzWord = 'BUZZ';
-            html += `<tr><td class="${className}">${buzzWord}</tr></td>`
         }
-        else
-        {
-            html += `<tr><td>${currentNumber}</tr></td>`;
+        else if (currentValue == 'FizzBuzz') {
+            className = 'fizzbuzz';
+        } 
+        else{
+            className = '';
         }
-       
+        html +=  `<tr><td class="${className}">${currentValue}</td></tr>`; 
     }
-    // once the row is created, place that row on to the page with the correct
-    // data and classes for styling
+    
+    // with each number, put it on the page
+    // e.g. <tr><td> i </td></tr>
     let tbody = document.getElementById('results');
     tbody.innerHTML = html;
 }
