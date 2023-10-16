@@ -76,19 +76,19 @@
 function getValues(){
 
     // Create the variables
-    let startValue = document.getElementById('startValue').value;
-    let endValue = document.getElementById('endValue').value;
+    let fizzValue = document.getElementById('fizzValue').value;
+    let buzzValue = document.getElementById('buzzValue').value;
 
     // convert text to integers
-    startValue = parseInt(startValue);
-    endValue = parseInt(endValue);
+    fizzValue = parseInt(fizzValue);
+    buzzValue = parseInt(buzzValue);
 
     // Validate the user input
-    if (Number.isInteger(startValue) && Number.isInteger(endValue) && startValue < endValue){
+    if (Number.isInteger(fizzValue) && Number.isInteger(buzzValue)){
         // send values to generate list of numbers
-        let generatedValues =  generateListOfNumbers(startValue, endValue);
+        let fbArray =  generateFizzBuzz(fizzValue, buzzValue);
         // display the list of numbers
-        displayListOfNumbers(generatedValues);
+        displayFizzBuzz(fbArray);
     }
     else
     {
@@ -98,9 +98,9 @@ function getValues(){
                 icon: 'error',
                 backdrop: false,
                 title: 'Oops',
-                text: 'Please enter valid numbers only. Ensure Starting value is less than the Ending Value.'
+                text: 'Please enter valid numbers only.'
             });
-    }  
+    } 
 }
                     </code>
                 </pre>
@@ -110,18 +110,18 @@ function getValues(){
                 <p>The code for this FizzBuzz Challenge is structured into three functions</p>
                 <p><code>getValues</code> main focus is on getting the values from the inputs. The secondary focus for the function is to orchestrate the order in which the application is supposed to run.</p>
                 <p>There is a third focus for this class as well which is to validate tthe users input, but I will go into the details of the validations later.</p>
-                <p>In this function, first we get the values the user inputs in the fields. The values are then converted from text to an integer via the <code>parseInt(startValue)</code> and <code>parseInt(endValue)</code> methods. After validation is complete, these values are tehn sent to the <code>generateListOfNumbers</code> function.</p>
+                <p>In this function, first we get the values the user inputs in the fields. The values are then converted from text to an integer via the <code>parseInt(fizzValue)</code> and <code>parseInt(buzzValue)</code> methods. After validation is complete, these values are then sent to the <code>generateFizzBuzz</code> function.</p>
             </div>
         </div>
 
-        <!-- #region Colapse Code for generateNumbers -->
+        <!-- #region Colapse Code for generateFizzBuzz -->
         <div class="row">
             <div>
-                <button class="btn btn-primary mb-3 w-100" type="button" data-bs-toggle="collapse" data-bs-target="#generateNumbers" aria-expanded="false" aria-controls="generateNumbers">
-                  generateListOfNumbers
+                <button class="btn btn-primary mb-3 w-100" type="button" data-bs-toggle="collapse" data-bs-target="#generateFizzBuzz" aria-expanded="true" aria-controls="generateFizzBuzz">
+                  generateFizzBuzz
                 </button>
             </div>
-            <div class="collapse" id="generateNumbers">
+            <div class="collapse" id="generateFizzBuzz">
                 
                   <!-- add code content -->
                   <div class="row">
@@ -129,38 +129,48 @@ function getValues(){
                         <!-- Display Code Here -->
                         <pre class="line-numbers"> <!-- This tag allows for any formatted text (indents, tabs, spaces) to be preserved -->
                             <code class="language-js"> <!-- allows code to be added to a block and formatted for code -->
-        // from site.js
-        
-        // generate the list of numbers
-        function generateListOfNumbers(start, end){
-        
-            // create variable for the list of numbers
-            numbers = [];
-        
-            // create a for loop to add number to the list
-            for (let n = start; n <= end; n++){
-                numbers.push(n)
-            }
-            // return the list of numbers
-            return numbers;
+// generate the list of numbers
+function generateFizzBuzz(fizz, buzz){
+
+    // create variable for the list of numbers
+    numbers = [];
+
+    // create a for loop to add number to the list
+    for (let n = 1; n <= 100; n++){
+        // check to see if condition is met
+        if(n % fizz == 0 && n % buzz == 0){
+            numbers.push('FizzBuzz')
         }
+        if(n % fizz == 0){
+            numbers.push('Fizz');
+        }
+        else if (n % buzz == 0){
+            numbers.push('Buzz');
+        }
+        else {
+            numbers.push(n);        
+        }
+    }
+    // return the array
+    return numbers;
+}
                             </code>
                         </pre>
                     </div>
                     <div class="col-12 col-lg-4">
                         <!-- Explain your code here -->
-                        <p>In this function, the values are received and are ran through a for loop. This gets every number between the starting value and the ending value. Each time the loop runs it pushes each number into the array until the condition is met. This array of numbers is returned and is then sent to the <code>displayListOfNumbers</code> function.</p>
+                        <p>In this function, the values are received and are ran through a for loop. This gets every number between the fizz value and the buzz value. Each time the loop runs it pushes each number into the array until the condition is met. This array of numbers is returned and is then sent to the <code>displayFizzBuzz</code> function.</p>
                     </div>
                 </div>
             </div>    
         </div>
-        <!-- #endregion end colapse generateNumbers -->
+        <!-- #endregion end colapse generateFizzBuzz -->
               
-        <!-- #region colapse component for displayListOfNumbers -->
+        <!-- #region colapse component for displayFizzBuzz -->
         <div class="row">
             <div>
-                <button class="btn btn-primary mb-3 w-100 " type="button" data-bs-toggle="collapse" data-bs-target="#displayNumbers" aria-expanded="false" aria-controls="displayNumbers">
-                  displayListOfNumbers
+                <button class="btn btn-primary mb-3 w-100 " type="button" data-bs-toggle="collapse" data-bs-target="#displayNumbers" aria-expanded="true" aria-controls="displayNumbers">
+                  displayFizzBuzz
                 </button>
             </div>
             <div class="collapse" id="displayNumbers">
@@ -171,48 +181,33 @@ function getValues(){
                         <!-- Display Code Here -->
                         <pre class="line-numbers"> <!-- This tag allows for any formatted text (indents, tabs, spaces) to be preserved -->
                             <code class="language-js"> <!-- allows code to be added to a block and formatted for code -->
-        // from site.js
-        
-        // display the list of numbers
-function displayListOfNumbers(numbers){
-    // create a variable that will hold the HTML string
+// display the array generated in generateFizzBuzz
+function displayFizzBuzz(numbers){
+    // create a variable for the HTML + values
     let html = '';
 
-    // create a loop that will get each number from the array
-    for(let i = 0; i < numbers.length; i++){
-        // create a variable for the current number, class name, and buzz word
-        let currentNumber = numbers[i];
-        let buzzWord = '';
+    
+    for (let index = 0; index < numbers.length; index += 1){
+        
         let className = '';
+        let currentValue = numbers[index];
 
-        // create a condition that looks for divisible requirements
-        // and creates the proper HTML code for the table row
-        if(currentNumber % 3 == 0 && currentNumber % 5 == 0)
-        {
-            className = 'fizzbuzz';
-            buzzWord = 'FIZZBUZZ';
-            html += `${buzzWord}`
-        }
-        else if(currentNumber % 3 == 0)
-        {
+        if (currentValue == 'Fizz' ){
             className = 'fizz';
-            buzzWord = 'FIZZ';
-            html += `${buzzWord}`
-        }
-        else if(currentNumber % 5 == 0)
-        {
+        } else if (currentValue == 'Buzz'){
             className = 'buzz';
-            buzzWord = 'BUZZ';
-            html += `${buzzWord}`
         }
-        else
-        {
-            html += `${currentNumber}`;
+        else if (currentValue == 'FizzBuzz') {
+            className = 'fizzbuzz';
+        } 
+        else{
+            className = '';
         }
-
+        html +=  `<tr><td class="${className}">${currentValue}</td></tr>`; 
     }
-    // once the row is created, place that row on to the page with the correct
-    // data and classes for styling
+    
+    // with each number, put it on the page
+    // e.g. <tr><td> i </td></tr>
     let tbody = document.getElementById('results');
     tbody.innerHTML = html;
 }
@@ -221,8 +216,7 @@ function displayListOfNumbers(numbers){
                     </div>
                     <div class="col-12 col-lg-4">
                         <!-- Explain your code here -->
-                        <p>In this final function of the code, a few new variables are created: one to hold the current number of the for loop, one to hold a buzz word, and one to hold a class name. The last class pertains to setting CSS for customization of the results. The other two pertain to the results of the application. A final variable is created to hold an HTML string that will be inserted into the DOM after each iteration of the loop</p>
-                        <p>Another for loop is run through with the array of number that was created in the previous function. Within this loop each number is checked for three things: if the number is divisible by 3, if the number is divisible by 5, or if the number is divisible by both 3 & 5. depending on which condition is met, a class name and buzz word is applied to a pre-created interpolated string and is sent to the DOM where it is inserted into the table.</p>
+                        <p>In this display function, a loop is ran. If Fizz, Buzz, or FizzBuzz is detected, a corresponding classname is assigned. This will be affected in the HTML string that is created to be placed into the innerHTML along with the value from the crrent loop iteration</p>
                     </div>
                 </div>
             </div>    
@@ -232,7 +226,7 @@ function displayListOfNumbers(numbers){
         <!-- #region colapse component for validations -->
         <div class="row">
             <div>
-                <button class="btn btn-primary mb-3 w-100 " type="button" data-bs-toggle="collapse" data-bs-target="#validations" aria-expanded="false" aria-controls="validations">
+                <button class="btn btn-primary mb-3 w-100 " type="button" data-bs-toggle="collapse" data-bs-target="#validations" aria-expanded="true" aria-controls="validations">
                   Validations
                 </button>
             </div>
@@ -244,33 +238,31 @@ function displayListOfNumbers(numbers){
                         <!-- Display Code Here -->
                         <pre class="line-numbers"> <!-- This tag allows for any formatted text (indents, tabs, spaces) to be preserved -->
                             <code class="language-js"> <!-- allows code to be added to a block and formatted for code -->
-        // from site.js
-        
-        // Validate the user input
-    if (Number.isInteger(startValue) && Number.isInteger(endValue) && startValue < endValue){
-        // send values to generate list of numbers
-        let generatedValues =  generateListOfNumbers(startValue, endValue);
-        // display the list of numbers
-        displayListOfNumbers(generatedValues);
-    }
-    else
-    {
-        // display a SweetAlert if validation fails
-        Swal.fire(
-            {
-                icon: 'error',
-                backdrop: false,
-                title: 'Oops',
-                text: 'Please enter valid numbers only. Ensure Starting value is less than the Ending Value.'
-            });
-    }
+// Validate the user input
+if (Number.isInteger(fizzValue) && Number.isInteger(buzzValue)){
+    // send values to generate list of numbers
+    let fbArray =  generateFizzBuzz(fizzValue, buzzValue);
+    // display the list of numbers
+    displayFizzBuzz(fbArray);
+}
+else
+{
+    // display a SweetAlert if validation fails
+    Swal.fire(
+        {
+            icon: 'error',
+            backdrop: false,
+            title: 'Oops',
+            text: 'Please enter valid numbers only.'
+        });
+} 
                             </code>
                         </pre>
                     </div>
                     <div class="col-12 col-lg-4">
                         <!-- Explain your code here -->
-                        <p>The validations that are done in the <code>getValues</code> function are there to ensure the application runs as it should. It checks to make sure that the input is a number and that the starting value is less than the ending value.<p>
-                        <p>If the validation should fail, a SweetAlert popup window will appear with information to the user on what the erroe is and how to correct it.</p>
+                        <p>The validations that are done in the <code>getValues</code> function are there to ensure the application runs as it should. It checks to make sure that the value is a number.<p>
+                        <p>If the validation should fail, a SweetAlert popup window will appear with information to the user on what the error is and how to correct it.</p>
                     </div>
                 </div>
             </div>    

@@ -26,11 +26,9 @@ function getValues(){
                 icon: 'error',
                 backdrop: false,
                 title: 'Oops',
-                text: 'Please enter valid numbers only. Ensure Starting value is less than the Ending Value.'
+                text: 'Please enter valid numbers only.'
             });
-    }
-
-    
+    } 
 }
 
 // generate the list of numbers
