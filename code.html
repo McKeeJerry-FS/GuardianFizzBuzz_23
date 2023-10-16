@@ -183,40 +183,29 @@ function generateFizzBuzz(fizz, buzz){
                             <code class="language-js"> <!-- allows code to be added to a block and formatted for code -->
 // display the array generated in generateFizzBuzz
 function displayFizzBuzz(numbers){
-    // create a variable for the HTML + values
-    let html = '';
-
     
-    for (let index = 0; index < numbers.length; index += 1){
+    let resultsDiv = document.getElementById('results');
+    resultsDiv.innerHTML = '';
+    
+    for (let index = 0; index < numbers.length; index++){
         
-        let className = '';
-        let currentValue = numbers[index];
+        
+        let arrayItem = numbers[index];
+        let newDiv = document.createElement('div'); // <div></div>
+        newDiv.classList.add('col'); // <div class="col"></div>
+        newDiv.classList.add(arrayItem) // <div class="col Fizz"></div>
 
-        if (currentValue == 'Fizz' ){
-            className = 'fizz';
-        } else if (currentValue == 'Buzz'){
-            className = 'buzz';
-        }
-        else if (currentValue == 'FizzBuzz') {
-            className = 'fizzbuzz';
-        } 
-        else{
-            className = '';
-        }
-        html +=  `<tr><td class="${className}">${currentValue}</td></tr>`; 
+        newDiv.textContent = arrayItem; // <div class="col Fizz">Fizz</div>
+        
+        resultsDiv.appendChild(newDiv);
     }
-    
-    // with each number, put it on the page
-    // e.g. <tr><td> i </td></tr>
-    let tbody = document.getElementById('results');
-    tbody.innerHTML = html;
 }
                             </code>
                         </pre>
                     </div>
                     <div class="col-12 col-lg-4">
                         <!-- Explain your code here -->
-                        <p>In this display function, a loop is ran. If Fizz, Buzz, or FizzBuzz is detected, a corresponding classname is assigned. This will be affected in the HTML string that is created to be placed into the innerHTML along with the value from the crrent loop iteration</p>
+                        <p>In this display function, a loop is ran. Within the JavaScript, a div is created along with the classes needed and is appended to the established div in the HTML/p>
                     </div>
                 </div>
             </div>    

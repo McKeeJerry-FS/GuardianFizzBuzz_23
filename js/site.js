@@ -43,7 +43,7 @@ function generateFizzBuzz(fizz, buzz){
         if(n % fizz == 0 && n % buzz == 0){
             numbers.push('FizzBuzz')
         }
-        if(n % fizz == 0){
+        else if(n % fizz == 0){
             numbers.push('Fizz');
         }
         else if (n % buzz == 0){
@@ -60,31 +60,20 @@ function generateFizzBuzz(fizz, buzz){
 
 // display the array generated in generateFizzBuzz
 function displayFizzBuzz(numbers){
-    // create a variable for the HTML + values
-    let html = '';
-
     
-    for (let index = 0; index < numbers.length; index += 1){
+    let resultsDiv = document.getElementById('results');
+    resultsDiv.innerHTML = '';
+    
+    for (let index = 0; index < numbers.length; index++){
         
-        let className = '';
-        let currentValue = numbers[index];
+        
+        let arrayItem = numbers[index];
+        let newDiv = document.createElement('div'); // <div></div>
+        newDiv.classList.add('col'); // <div class="col"></div>
+        newDiv.classList.add(arrayItem) // <div class="col Fizz"></div>
 
-        if (currentValue == 'Fizz' ){
-            className = 'fizz';
-        } else if (currentValue == 'Buzz'){
-            className = 'buzz';
-        }
-        else if (currentValue == 'FizzBuzz') {
-            className = 'fizzbuzz';
-        } 
-        else{
-            className = '';
-        }
-        html +=  `<tr><td class="${className}">${currentValue}</td></tr>`; 
+        newDiv.textContent = arrayItem; // <div class="col Fizz">Fizz</div>
+        
+        resultsDiv.appendChild(newDiv);
     }
-    
-    // with each number, put it on the page
-    // e.g. <tr><td> i </td></tr>
-    let tbody = document.getElementById('results');
-    tbody.innerHTML = html;
 }
