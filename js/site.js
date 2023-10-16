@@ -41,7 +41,7 @@ function generateFizzBuzz(fizz, buzz){
 
     // create a for loop to add number to the list
     for (let n = 1; n <= 100; n++){
-        // create a variable for the current number, class name, and buzz word
+        // check to see if condition is met
         if(n % fizz == 0 && n % buzz == 0){
             numbers.push('FizzBuzz')
         }
@@ -55,17 +55,17 @@ function generateFizzBuzz(fizz, buzz){
             numbers.push(n);        
         }
     }
-    // return the list of numbers
+    // return the array
     return numbers;
 }
 
 
-// display the list of numbers
+// display the array generated in generateFizzBuzz
 function displayFizzBuzz(numbers){
-    // create a variable for the HTML + numbers
+    // create a variable for the HTML + values
     let html = '';
 
-    // make a loop to get each number from the array
+    
     for (let index = 0; index < numbers.length; index += 1){
         
         let className = '';
