@@ -4,17 +4,17 @@
 function getValues(){
 
     // Create the variables
-    let startValue = document.getElementById('startValue').value;
-    let endValue = document.getElementById('endValue').value;
+    let fizzValue = document.getElementById('fizzValue').value;
+    let buzzValue = document.getElementById('buzzValue').value;
 
     // convert text to integers
-    startValue = parseInt(startValue);
-    endValue = parseInt(endValue);
+    fizzValue = parseInt(fizzValue);
+    buzzValue = parseInt(buzzValue);
 
     // Validate the user input
-    if (Number.isInteger(startValue) && Number.isInteger(endValue) && startValue < endValue){
+    if (Number.isInteger(fizzValue) && Number.isInteger(buzzValue)){
         // send values to generate list of numbers
-        let fbArray =  generateFizzBuzz(startValue, endValue);
+        let fbArray =  generateFizzBuzz(fizzValue, buzzValue);
         // display the list of numbers
         displayFizzBuzz(fbArray);
     }
@@ -34,21 +34,21 @@ function getValues(){
 }
 
 // generate the list of numbers
-function generateFizzBuzz(start, end){
+function generateFizzBuzz(fizz, buzz){
 
     // create variable for the list of numbers
     numbers = [];
 
     // create a for loop to add number to the list
-    for (let n = start; n <= end; n++){
+    for (let n = 1; n <= 100; n++){
         // create a variable for the current number, class name, and buzz word
-        if(n % 3 == 0 && n % 5 == 0){
+        if(n % fizz == 0 && n % buzz == 0){
             numbers.push('FizzBuzz')
         }
-        if(n % 3 == 0){
+        if(n % fizz == 0){
             numbers.push('Fizz');
         }
-        else if (n % 5 == 0){
+        else if (n % buzz == 0){
             numbers.push('Buzz');
         }
         else {
